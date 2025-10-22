@@ -40,6 +40,9 @@ class CheckoutSolution:
         return ecount * BASE_PRICES['E'], free_b_count
     
     def calculate_f_total(self, fcount):
+        # for every 2 F's, get one F free
+        chargeable_f_count = fcount - (fcount // 3)
+        return chargeable_f_count * BASE_PRICES['F']
 
     # skus = unicode string
     def checkout(self, skus):
@@ -57,16 +60,18 @@ class CheckoutSolution:
         c_count = skus.count('C')
         d_count = skus.count('D')
         e_count = skus.count('E')
+        f_count = skus.count('F')
 
         a_total = self.calculate_a_total(a_count)
         c_total = c_count * BASE_PRICES['C']
         d_total = d_count * BASE_PRICES['D']
         e_total, b_free_count = self.calculate_e_total_and_b_free_count(e_count)
+        f_count = self.calculate_f_total(f_count)
 
         # has to be calculated after getting free B count from E's
         if b_count > 0:
             b_count -= b_free_count
         b_total = (b_count // 2) * 45 + (b_count % 2) * BASE_PRICES['B']
 
-        return sum([a_total, b_total, c_total, d_total, e_total])
+        return sum([a_total, b_total, c_total, d_total, e_total, f_count])
 

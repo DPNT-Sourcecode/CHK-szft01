@@ -59,3 +59,10 @@ class TestSum():
         assert CheckoutSolution().checkout('AAAAAAAAA') == 380  # 1x200(5), 1x130(3), 1x50(1)
         assert CheckoutSolution().checkout('EEEEBB') == 160
         assert CheckoutSolution().checkout('AAAEEBB') == 240
+
+        # CHE_3
+        assert CheckoutSolution().checkout('F') == 10
+        assert CheckoutSolution().checkout('FF') == 20
+        assert CheckoutSolution().checkout('FFF') == 20
+        assert CheckoutSolution().checkout('FFFF') == 30
+        assert CheckoutSolution().checkout('FFFFF') == 30

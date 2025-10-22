@@ -16,6 +16,8 @@ Our price table and offers:
 
 class TestSum():
     def test_sum(self):
+
+        # CHK_1
         assert CheckoutSolution().checkout('') == 0
         assert CheckoutSolution().checkout(None) == 0
         assert CheckoutSolution().checkout('A') == 50
@@ -34,3 +36,8 @@ class TestSum():
         assert CheckoutSolution().checkout('XYZ') == -1
         assert CheckoutSolution().checkout('ABCa') == -1
         assert CheckoutSolution().checkout('-') == -1
+
+        # CHK_2 new tests for E and free B
+        assert CheckoutSolution().checkout('E') == 40
+        assert CheckoutSolution().checkout('EE') == 80
+        assert CheckoutSolution().checkout('EEB') == 80  # one B free

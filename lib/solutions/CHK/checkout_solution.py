@@ -27,7 +27,7 @@ class CheckoutSolution:
     def calculate_a_total(self, count):
         return (count // 5) * 200 + ((count % 5) // 3) * 130 + (count % 3) * BASE_PRICES['A']
     
-    def calculate_e_total(self, count):
+    def calculate_e_total_and_b_free_count(self, count):
         # for every 2 E's, get one B free
         free_b_count = count // 2
         return count * BASE_PRICES['E'], free_b_count
@@ -50,10 +50,12 @@ class CheckoutSolution:
         e_count = skus.count('E')
 
         a_total = self.calculate_a_total(a_count)
-        b_total = (b_count // 2) * 45 + (b_count % 2) * BASE_PRICES['B']
         c_total = c_count * BASE_PRICES['C']
         d_total = d_count * BASE_PRICES['D']
-        e_total = self.calculate_a_total(e_count)
+        e_total, b_free_count = self.calculate_e_total_and_b_free_count(e_count)
 
-        return sum([a_total, b_total, c_total, d_total, e_total])
+        # has to be calculated after getting free B count from E's
+        b_total = (b_count // 2) * 45 + (b_count % 2) * BASE_PRICES['B']
+
+        return sum([a_total, b_total-b_free_count, c_total, d_total, e_total])
 

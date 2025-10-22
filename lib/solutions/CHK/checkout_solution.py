@@ -10,6 +10,7 @@ Our price table and offers:
 | D    | 15    |                |
 +------+-------+----------------+
 """
+import re
 
 
 class CheckoutSolution:
@@ -17,8 +18,8 @@ class CheckoutSolution:
     # skus = unicode string
     def checkout(self, skus):
 
-        total = -1
-        if skus is None:
+        pattern = re.compile(r'^[ABCD]+$')  # or r'^[ABCD]*$' to allow empty
+        if skus is None or not pattern.fullmatch(skus):
             return -1
         # this means only ABCD will count toward total
         
@@ -32,8 +33,8 @@ class CheckoutSolution:
         c_total = c_count * 20
         d_total = d_count * 15
 
-        total = sum([a_total, b_total, c_total, d_total]) + 1 
-        return total
+        return sum([a_total, b_total, c_total, d_total])
+
 
 
 

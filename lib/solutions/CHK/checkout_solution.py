@@ -73,7 +73,6 @@ FREE_OTHER_PROUDCTS = {
 
 def calculate_a_total(acount):
     """3A for 130, 5A for 200"""
-    print(f"DAVE CALC A {acount}")
     five_pack_count = acount // 5
     remainder_after_five_packs = acount % 5
 
@@ -106,26 +105,34 @@ def calculate_h_total(hcount):
     return (ten_pack_count) * 80 + (remainder_after_ten_packs // 5) * 45 + (remainder_after_ten_packs % 5) * BASE_PRICES['H']
 
 def calculate_k_total(kcount):
-    """TODO"""
-    pass
+    """2K for 150"""
+    return (kcount // 2) * 150 + (kcount % 2) * BASE_PRICES['K']
+
 def calculate_n_total(ncount):
-    """TODO"""
+    """3N get one M free"""
     pass
+
 def calculate_p_total(pcount):
-    """TODO"""
-    pass
+    """5P for 200"""
+    return (pcount // 5) * 200 + (pcount % 5) * BASE_PRICES['P']
+
 def calculate_q_total(qcount):
-    """TODO"""
-    pass
+    """3Q for 80"""
+    return (qcount // 3) * 80 + (qcount % 3) * BASE_PRICES['Q']
+
 def calculate_r_total(rcount):
-    """TODO"""
+    """3R get one Q free"""
     pass
+
 def calculate_u_total(ucount):
-    """TODO"""
-    pass
+    """3U get one U free"""
+    return (ucount - (ucount // 4)) * BASE_PRICES['U']
+
 def calculate_v_total(vcount):
-    """TODO"""
-    pass
+    """2V for 90, 3V for 130"""
+    three_pack_count = vcount // 3
+    remainder_after_three_packs = vcount % 3
+    return (three_pack_count) * 130 + (remainder_after_three_packs // 2) * 90 + (remainder_after_three_packs % 2) * BASE_PRICES['V']
 
 PRODUCT_OFFERS = {
     'A': calculate_a_total,
@@ -198,6 +205,7 @@ class CheckoutSolution:
             final_total += temp
 
         return final_total
+
 
 
 

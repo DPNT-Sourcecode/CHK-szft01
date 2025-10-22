@@ -34,6 +34,7 @@ Our price table and offers:
 """
 import re
 
+# could map values to their calculation functions here TODO
 BASE_PRICES = {
     'A': 50,
     'B': 30,
@@ -112,6 +113,3 @@ class CheckoutSolution:
         b_total = (b_count // 2) * 45 + (b_count % 2) * BASE_PRICES['B']
 
         return sum([a_total, b_total, c_total, d_total, e_total, f_count])
-
-
-

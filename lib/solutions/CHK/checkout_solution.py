@@ -55,8 +55,8 @@ class CheckoutSolution:
         e_total, b_free_count = self.calculate_e_total_and_b_free_count(e_count)
 
         # has to be calculated after getting free B count from E's
-        b_count -= b_free_count
+        if b_count > 0:
+            b_count -= b_free_count
         b_total = (b_count // 2) * 45 + (b_count % 2) * BASE_PRICES['B']
 
         return sum([a_total, b_total, c_total, d_total, e_total])
-

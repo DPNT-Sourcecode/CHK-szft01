@@ -54,6 +54,6 @@ class TestSum():
         assert CheckoutSolution().checkout('E') == 40
         assert CheckoutSolution().checkout('EE') == 80
         assert CheckoutSolution().checkout('EEB') == 80  # one B free
-        # assert CheckoutSolution().checkout('AAAAA') == 200
-        # assert CheckoutSolution().checkout('AAAAAA') == 250
-        # assert CheckoutSolution().checkout('AAAAAAAAA') == 380
+        assert CheckoutSolution().checkout('AAAAA') == 200
+        assert CheckoutSolution().checkout('AAAAAA') == 250
+        assert CheckoutSolution().checkout('AAAAAAAAA') == 380

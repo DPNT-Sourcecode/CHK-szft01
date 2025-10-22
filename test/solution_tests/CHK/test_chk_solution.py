@@ -65,4 +65,5 @@ class TestSum():
         assert CheckoutSolution().checkout('FF') == 20
         assert CheckoutSolution().checkout('FFF') == 20
         assert CheckoutSolution().checkout('FFFF') == 30
-        assert CheckoutSolution().checkout('FFFFF') == 30
+        assert CheckoutSolution().checkout('FFFFF') == 40
+        assert CheckoutSolution().checkout('FFFFFF') == 40

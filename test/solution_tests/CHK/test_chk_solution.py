@@ -1,7 +1,31 @@
 from solutions.CHK.checkout_solution import CheckoutSolution
 
 
+"""
+Our price table and offers:
++------+-------+----------------+
+| Item | Price | Special offers |
++------+-------+----------------+
+| A    | 50    | 3A for 130     |
+| B    | 30    | 2B for 45      |
+| C    | 20    |                |
+| D    | 15    |                |
++------+-------+----------------+
+"""
+
+
 class TestSum():
     def test_sum(self):
-        assert CheckoutSolution().checkout(None) == "test"
+        assert CheckoutSolution().checkout('') == 0
+        assert CheckoutSolution().checkout('DD') == 30
+        assert CheckoutSolution().checkout('ABCD') == 115
+        assert CheckoutSolution().checkout('AA') == 100
+        assert CheckoutSolution().checkout('AAA') == 130
+        assert CheckoutSolution().checkout('AAAA') == 180
+        assert CheckoutSolution().checkout('AAAAA') == 230
+        assert CheckoutSolution().checkout('AAAAAA') == 260
+        assert CheckoutSolution().checkout('BB') == 45
+        assert CheckoutSolution().checkout('BBB') == 75 
+        assert CheckoutSolution().checkout('DD') == 30
+
 

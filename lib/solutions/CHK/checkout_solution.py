@@ -163,6 +163,29 @@ PRODUCT_OFFERS = {
     'Z': lambda c: c * BASE_PRICES['Z'],
 }
 
+def calculate_cross_product_item_totals(letter_counts):
+    """
+    - if there are any cross product free items we have to do those first
+    - eg if there are Es we have to calculate those first to get free Bs
+    """
+    cross_product_offer_total = 0
+    
+    for cross_product_ltr in FREE_OTHER_PROUDCTS.keys():
+        if cross_product_ltr in letter_counts:
+            free_ltr = FREE_OTHER_PROUDCTS[cross_product_ltr]  # get the corresponding free item letter
+
+            # calculate total for this product (E in example) and amounft of free other product (B in example)
+            cross_product_ltr_total, free_ltr_count = PRODUCT_OFFERS[cross_product_ltr](letter_counts[cross_product_ltr])
+
+            free_ltr_total = PRODUCT_OFFERS[free_ltr](letter_counts.get(free_ltr, 0), free_ltr_count)
+            cross_product_offer_total += cross_product_ltr_total + free_ltr_total
+            
+            # remove these from letter_counts so they arent double counted later
+            letter_counts.pop(cross_product_ltr)
+            if free_ltr in letter_counts:
+                letter_counts.pop(free_ltr)
+    return cross_product_offer_total
+
 class CheckoutSolution:
 
     def checkout(self, skus):
@@ -205,6 +228,7 @@ class CheckoutSolution:
             final_total += temp
 
         return final_total
+
 
 
 

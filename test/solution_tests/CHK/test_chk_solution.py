@@ -117,7 +117,7 @@ class TestSum():
         assert CheckoutSolution().checkout('ZZZ') == 45
         assert CheckoutSolution().checkout('STX') == 45
         assert CheckoutSolution().checkout('STY') == 45
-        assert CheckoutSolution().checkout('STYY') == 55
+        assert CheckoutSolution().checkout('STYY') == 65
         assert CheckoutSolution().checkout('VVSTVVVY') == 265
         assert CheckoutSolution().checkout('KKK') == 190
         assert CheckoutSolution().checkout('KKKK') == 240
@@ -125,4 +125,5 @@ class TestSum():
         # I am led to believe these tests are NOT evaluated in our applicaiton
         # I really hope I am right, I know I would have wasted time on them earleir 
         # but considering the size of the prodcut rnage now there are TONNES of potential tests
+
 

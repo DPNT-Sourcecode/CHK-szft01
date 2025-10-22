@@ -18,8 +18,11 @@ class CheckoutSolution:
     # skus = unicode string
     def checkout(self, skus):
 
+        if skus is None or skus == '':
+            return 0
+        
         pattern = re.compile(r'^[ABCD]+$')  # or r'^[ABCD]*$' to allow empty
-        if skus is None or not pattern.fullmatch(skus):
+        if not pattern.fullmatch(skus):
             return -1
         # this means only ABCD will count toward total
         
@@ -34,10 +37,3 @@ class CheckoutSolution:
         d_total = d_count * 15
 
         return sum([a_total, b_total, c_total, d_total])
-
-
-
-
-
-
-

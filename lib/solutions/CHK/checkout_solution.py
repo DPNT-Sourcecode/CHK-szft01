@@ -83,8 +83,16 @@ class CheckoutSolution:
     }
 
     # if these come up we have to adjust counts of other products
-    FREE_OTHER_PROUDCTS = set(['E', 'N', 'R'])
-
+    # FREE_OTHER_PROUDCTS = {
+    #     'E': ('B', 2),  # for every 2 E get one B free
+    #     'N': ('M', 3),  # for every 3 N get one M free
+    #     'R': ('Q', 3),  # for every 3 R get one Q free
+    # }
+    FREE_OTHER_PROUDCTS = {
+        'E': 'B',
+        'N': 'M',
+        'R': 'Q',
+    }
 
 
     # TODO update all these to skip evaluation if count is 0
@@ -213,5 +221,6 @@ class CheckoutSolution:
         # really dont want to also write all these out again, could just aggregate totals but still thinking of cleaner way
         # have to specifc funcs in meantime anyway
         return sum([a_total, b_total, c_total, d_total, e_total, f_total, g_total, h_total])
+
 
 

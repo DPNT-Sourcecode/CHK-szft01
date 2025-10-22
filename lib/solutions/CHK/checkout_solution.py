@@ -221,15 +221,18 @@ def calculate_cross_product_item_totals(letter_counts):
 def calculate_three_for_45_offer_total(letter_counts):
     """
     - if there are any of the 3 for 45 group we have to do those first
-    - as they cross product ie S,T,X,Y,Z
+    - and remove the used letters from letter_counts so they arent double counted later
     """
     three_for_45_total = 0
+    three_for_45_str = ''
+
 
     # get total count of all items in the group
     total_group_count = 0
     for ltr in THREE_FOR_45_GROUP:
         if ltr in letter_counts:
             total_group_count += letter_counts[ltr]
+            three_for_45_str += ltr * letter_counts[ltr]
 
     if total_group_count < 2:
         return 0  # nothing to do
@@ -244,6 +247,11 @@ def calculate_three_for_45_offer_total(letter_counts):
     print("total_group_count:", total_group_count)
     print("three_for_45_pack_count:", three_for_45_pack_count)
     print("remainder_after_packs:", remainder_after_packs)
+
+    for ltr in three_for_45_str:
+        letter_counts[ltr] -= 1
+        if letter_counts[ltr] == 0:
+            letter_counts.pop(ltr)
 
     # now we need to charge for the most expensive items left
     if remainder_after_packs > 0:
@@ -318,3 +326,4 @@ and I desperately hope it doesnt look like I just copy pasted an entire solution
 onto CHK 5 in the meantime. if I should be put throug to the next round I can happily explain what I went rhough to pridcue CHK 4 solution
 whihc I am pretty happy with now (not as happy as I can be but still) considering where I was after chk3 (ie code not moudlarised)
 """
+

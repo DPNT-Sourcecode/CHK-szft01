@@ -231,6 +231,9 @@ def calculate_three_for_45_offer_total(letter_counts):
         if ltr in letter_counts:
             total_group_count += letter_counts[ltr]
 
+    if total_group_count < 2:
+        return 0  # nothing to do
+
     # calculate how many 3 for 45 packs we can have
     three_for_45_pack_count = total_group_count // 3
     three_for_45_total += three_for_45_pack_count * 45
@@ -238,6 +241,8 @@ def calculate_three_for_45_offer_total(letter_counts):
     # calculate how many items are left after the packs
     remainder_after_packs = total_group_count % 3
 
+    print("total_group_count:", total_group_count)
+    print("three_for_45_pack_count:", three_for_45_pack_count)
     print("remainder_after_packs:", remainder_after_packs)
 
     # now we need to charge for the most expensive items left

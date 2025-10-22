@@ -64,27 +64,13 @@ BASE_PRICES = {
     'Z': 50,
 }
 
-PRODUCT_OFFERS = {
-    'A': [(3, 130), (5, 200)],
-    'B': [(2, 45)],
-    'E': calculate_e_total_and_b_free_count,
-    'F': [(2, 'get one F free')],
-    'H': [(5, 45), (10, 80)],
-    # 'K': [(2, 150)],
-    # 'N': [(3, 'get one M free')],
-    # 'P': [(5, 200)],
-    # 'Q': [(3, 80)],
-    # 'R': [(3, 'get one Q free')],
-    # 'U': [(3, 'get one U free')],
-    # 'V': [(2, 90), (3, 130)],
-}
 
-    # if these come up we have to adjust counts of other products
-    # FREE_OTHER_PROUDCTS = {
-    #     'E': ('B', 2),  # for every 2 E get one B free
-    #     'N': ('M', 3),  # for every 3 N get one M free
-    #     'R': ('Q', 3),  # for every 3 R get one Q free
-    # }
+# if these come up we have to adjust counts of other products
+# FREE_OTHER_PROUDCTS = {
+#     'E': ('B', 2),  # for every 2 E get one B free
+#     'N': ('M', 3),  # for every 3 N get one M free
+#     'R': ('Q', 3),  # for every 3 R get one Q free
+# }
 FREE_OTHER_PROUDCTS = {
     'E': 'B',
     'N': 'M',
@@ -147,6 +133,20 @@ def calculate_v_total(vcount):
     """TODO"""
     pass
 
+PRODUCT_OFFERS = {
+    'A': [(3, 130), (5, 200)],
+    'B': [(2, 45)],
+    'E': calculate_e_total_and_b_free_count,
+    'F': [(2, 'get one F free')],
+    'H': [(5, 45), (10, 80)],
+    # 'K': [(2, 150)],
+    # 'N': [(3, 'get one M free')],
+    # 'P': [(5, 200)],
+    # 'Q': [(3, 80)],
+    # 'R': [(3, 'get one Q free')],
+    # 'U': [(3, 'get one U free')],
+    # 'V': [(2, 90), (3, 130)],
+}
 
 class CheckoutSolution:
 
@@ -175,7 +175,14 @@ class CheckoutSolution:
 
         for cross_product_ltr in FREE_OTHER_PROUDCTS.keys():
             if cross_product_ltr in letter_counts:
-                cross_product_ltr_total, free_ltr_count = PRODUCT_OFFERS[cross_product_ltr][0]
+                free_ltr = FREE_OTHER_PROUDCTS[cross_product_ltr]
+                cross_product_ltr_total, free_ltr_count = PRODUCT_OFFERS[cross_product_ltr](letter_counts[cross_product_ltr])
+                free_ltr_total = PRODUCT_OFFERS[free_ltr](letter_counts.get(free_ltr, 0), free_ltr_count)
+                final_total += cross_product_ltr_total + free_ltr_total
+                # remove these from letter_counts so they arent double counted later
+                letter_counts.pop(cross_product_ltr)
+                if free_ltr in letter_counts:
+                    letter_counts.pop(free_ltr)
 
         
 
@@ -226,8 +233,3 @@ class CheckoutSolution:
         # really dont want to also write all these out again, could just aggregate totals but still thinking of cleaner way
         # have to specifc funcs in meantime anyway
         return sum([a_total, b_total, c_total, d_total, e_total, f_total, g_total, h_total])
-
-
-
-
-

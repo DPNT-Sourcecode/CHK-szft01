@@ -46,7 +46,8 @@ class TestSum():
         assert CheckoutSolution().checkout('DD') == 30
         assert CheckoutSolution().checkout('ABCD') == 115
         assert CheckoutSolution().checkout('ABCDABAA') == 260
-        assert CheckoutSolution().checkout('XYZ') == -1
+        # assert CheckoutSolution().checkout('XYZ') == -1
+        # as of CHK_4 we allow all capital letters
         assert CheckoutSolution().checkout('ABCa') == -1
         assert CheckoutSolution().checkout('-') == -1
 
@@ -60,10 +61,12 @@ class TestSum():
         assert CheckoutSolution().checkout('EEEEBB') == 160
         assert CheckoutSolution().checkout('AAAEEBB') == 240
 
-        # CHE_3
+        # CHK_3
         assert CheckoutSolution().checkout('F') == 10
         assert CheckoutSolution().checkout('FF') == 20
         assert CheckoutSolution().checkout('FFF') == 20
         assert CheckoutSolution().checkout('FFFF') == 30
         assert CheckoutSolution().checkout('FFFFF') == 40
         assert CheckoutSolution().checkout('FFFFFF') == 40
+
+        # CHK_4

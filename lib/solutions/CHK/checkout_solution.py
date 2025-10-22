@@ -74,6 +74,8 @@ class CheckoutSolution:
 
         return (five_pack_count) * 200 + (remainder_after_five_packs // 3) * 130 + (remainder_after_five_packs % 3) * BASE_PRICES['A']
     
+    def calculate_b_total(self, bcount, bfree_count):
+
     def calculate_e_total_and_b_free_count(self, ecount):
         """2E get one B free"""
         free_b_counts = ecount // 2
@@ -93,20 +95,14 @@ class CheckoutSolution:
         if not pattern.fullmatch(skus):
             return -1
         # this means only capital letter will count toward total
-        
-        # a_count = skus.count('A')
-        # letter_counts['B'] = skus.count('B')
-        # c_count = skus.count('C')
-        # d_count = skus.count('D')
-        # e_count = skus.count('E')
-        # f_count = skus.count('F')
 
         letter_counts = {}
 
         for letter in BASE_PRICES.keys():
             letter_counts[letter] = skus.count(letter)
 
-        # if youre watching im just thinking about diff implementations here to avoid lines upon lines
+        # cant think of a clean way to avoid these next 26 calculations
+        # could assign fucntions to each letter in BASE_PRICES and rename but there are dependencies like free Bs for E aso have to do E before B
 
         a_total = self.calculate_a_total(letter_counts['A'])
         c_total = letter_counts['C'] * BASE_PRICES['C']
@@ -114,10 +110,8 @@ class CheckoutSolution:
         e_total, b_free_count = self.calculate_e_total_and_b_free_count(letter_counts['E'])
         f_total = self.calculate_f_total(letter_counts['F'])
 
-        # has to be calculated after getting free B count from E's
-        if letter_counts['B'] > 0:
-            letter_counts['B'] -= b_free_count
-        b_total = (letter_counts['B'] // 2) * 45 + (letter_counts['B'] % 2) * BASE_PRICES['B']
+        b_total = self.calculate_b_total(letter_counts['B'], b_free_count)
+        
 
         return sum([a_total, b_total, c_total, d_total, e_total, f_total])
 

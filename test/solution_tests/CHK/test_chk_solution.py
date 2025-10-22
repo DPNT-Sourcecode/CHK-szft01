@@ -116,3 +116,4 @@ class TestSum():
         assert CheckoutSolution().checkout('STX') == 45
         assert CheckoutSolution().checkout('STY') == 45
         assert CheckoutSolution().checkout('STYY') == 55
+        assert CheckoutSolution().checkout('VVSTVVVY') == 265

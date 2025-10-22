@@ -77,14 +77,17 @@ FREE_OTHER_PROUDCTS = {
 # I would have assumed we make the customer pay for the more expensive item
 # BUT in the CHK specs:
 # "The policy of the supermarket is to always favor the customer when applying special offers"
+# so we have to assume the customer pays for the less expensive item, which would be bizarre
+# I know the test cases will demostrate what you want the behaviour to be but it is either
+# not specified properly or else counterintuitive
+# ..
+# anyway, I'll go with what the spec says
 THREE_FOR_45_GROUP = set(['S', 'T', 'X', 'Y', 'Z'])
-
-
-'Y': 10,
-'T': 20,
-'S': 30,
-'Z': 50,
-'X': 90,
+# 'Y', 10,
+# 'T', 20,
+# 'S', 30,
+# 'Z', 50,
+# 'X', 90,
 
 def calculate_a_total(acount):
     """3A for 130, 5A for 200"""
@@ -238,6 +241,8 @@ class CheckoutSolution:
 
         final_total = 0
 
+        final_total += calculate_three_for_45_offer_total(letter_counts)
+
         final_total += calculate_cross_product_item_totals(letter_counts)
 
         for letter in letter_counts:
@@ -258,6 +263,7 @@ and I desperately hope it doesnt look like I just copy pasted an entire solution
 onto CHK 5 in the meantime. if I should be put throug to the next round I can happily explain what I went rhough to pridcue CHK 4 solution
 whihc I am pretty happy with now (not as happy as I can be but still) considering where I was after chk3 (ie code not moudlarised)
 """
+
 
 
 

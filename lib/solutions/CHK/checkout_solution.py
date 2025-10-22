@@ -17,9 +17,9 @@ class CheckoutSolution:
     # skus = unicode string
     def checkout(self, skus):
 
-        total = 0
+        total = -1
         if skus is None:
-            return 0
+            return -1
         # this means only ABCD will count toward total
         
         a_count = skus.count('A')
@@ -32,8 +32,9 @@ class CheckoutSolution:
         c_total = c_count * 20
         d_total = d_count * 15
 
-        total = sum([a_total, b_total, c_total, d_total])
+        total = sum([a_total, b_total, c_total, d_total]) + 1 
         return total
+
 
 
 

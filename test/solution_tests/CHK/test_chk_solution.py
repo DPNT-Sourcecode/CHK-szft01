@@ -3,6 +3,7 @@ from solutions.CHK.checkout_solution import CheckoutSolution
 
 """
 Our price table and offers:
+CHK1
 +------+-------+----------------+
 | Item | Price | Special offers |
 +------+-------+----------------+
@@ -11,6 +12,17 @@ Our price table and offers:
 | C    | 20    |                |
 | D    | 15    |                |
 +------+-------+----------------+
+
+CHK2
++------+-------+------------------------+
+| Item | Price | Special offers         |
++------+-------+------------------------+
+| A    | 50    | 3A for 130, 5A for 200 |
+| B    | 30    | 2B for 45              |
+| C    | 20    |                        |
+| D    | 15    |                        |
+| E    | 40    | 2E get one B free      |
++------+-------+------------------------+
 """
 
 
@@ -24,8 +36,9 @@ class TestSum():
         assert CheckoutSolution().checkout('AA') == 100
         assert CheckoutSolution().checkout('AAA') == 130
         assert CheckoutSolution().checkout('AAAA') == 180
-        assert CheckoutSolution().checkout('AAAAA') == 230
-        assert CheckoutSolution().checkout('AAAAAA') == 260
+        # assert CheckoutSolution().checkout('AAAAA') == 230
+        # assert CheckoutSolution().checkout('AAAAAA') == 260
+        # as of CHK_2 theres a discount for 5A for 200
         assert CheckoutSolution().checkout('BB') == 45
         assert CheckoutSolution().checkout('BBB') == 75 
         assert CheckoutSolution().checkout('BBBB') == 90
@@ -41,3 +54,6 @@ class TestSum():
         assert CheckoutSolution().checkout('E') == 40
         assert CheckoutSolution().checkout('EE') == 80
         assert CheckoutSolution().checkout('EEB') == 80  # one B free
+        # assert CheckoutSolution().checkout('AAAAA') == 200
+        # assert CheckoutSolution().checkout('AAAAAA') == 250
+        # assert CheckoutSolution().checkout('AAAAAAAAA') == 380

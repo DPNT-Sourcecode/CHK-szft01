@@ -185,10 +185,3 @@ class CheckoutSolution:
         # really dont want to also write all these out again, could just aggregate totals but still thinking of cleaner way
         # have to specifc funcs in meantime anyway
         return sum([a_total, b_total, c_total, d_total, e_total, f_total, g_total, h_total])
-
-
-
-
-
-
-

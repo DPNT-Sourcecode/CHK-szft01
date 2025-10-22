@@ -96,8 +96,11 @@ class CheckoutSolution:
         return chargeable_f_count * BASE_PRICES['F']
 
     def calculate_h_total(self, hcount):
-        """TODO"""
-        pass
+        """5H for 45, 10H for 80"""
+        ten_pack_count = hcount // 10
+        remainder_after_ten_packs = hcount % 10
+        return (ten_pack_count) * 80 + (remainder_after_ten_packs // 5) * 45 + (remainder_after_ten_packs % 5) * BASE_PRICES['H']
+
     def calculate_k_total(self, kcount):
         """TODO"""
         pass
@@ -161,7 +164,7 @@ class CheckoutSolution:
     
         # TODO order swap, free Ms for N
         n_total = self.calculate_n_total(letter_counts['N'])
-        m_total = pass
+        m_total = 0  # TODO
         
         o_total = letter_counts['O'] * BASE_PRICES['O']
         p_total = self.calculate_p_total(letter_counts['P'])
@@ -181,7 +184,8 @@ class CheckoutSolution:
 
         # really dont want to also write all these out again, could just aggregate totals but still thinking of cleaner way
         # have to specifc funcs in meantime anyway
-        return sum([a_total, b_total, c_total, d_total, e_total, f_total])
+        return sum([a_total, b_total, c_total, d_total, e_total, f_total, g_total, h_total])
+
 
 
 

@@ -75,6 +75,14 @@ class CheckoutSolution:
         return (five_pack_count) * 200 + (remainder_after_five_packs // 3) * 130 + (remainder_after_five_packs % 3) * BASE_PRICES['A']
     
     def calculate_b_total(self, bcount, bfree_count):
+        """
+        - has to be calculated after getting free B count from E's
+        - without free B count its 2B for 45
+        """
+        if bcount > 0:
+            bcount -= bfree_count
+        b_total = (bcount // 2) * 45 + (bcount % 2) * BASE_PRICES['B']
+        return b_total
 
     def calculate_e_total_and_b_free_count(self, ecount):
         """2E get one B free"""
@@ -103,15 +111,20 @@ class CheckoutSolution:
 
         # cant think of a clean way to avoid these next 26 calculations
         # could assign fucntions to each letter in BASE_PRICES and rename but there are dependencies like free Bs for E aso have to do E before B
+        # just gonna get it working for now
 
         a_total = self.calculate_a_total(letter_counts['A'])
         c_total = letter_counts['C'] * BASE_PRICES['C']
         d_total = letter_counts['D'] * BASE_PRICES['D']
+
         e_total, b_free_count = self.calculate_e_total_and_b_free_count(letter_counts['E'])
+        b_total = self.calculate_b_total(letter_counts['B'], b_free_count)
+
         f_total = self.calculate_f_total(letter_counts['F'])
 
-        b_total = self.calculate_b_total(letter_counts['B'], b_free_count)
+        
         
 
         return sum([a_total, b_total, c_total, d_total, e_total, f_total])
+
 

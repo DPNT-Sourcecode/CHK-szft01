@@ -64,23 +64,20 @@ BASE_PRICES = {
     'Z': 50,
 }
 
-
-class CheckoutSolution:
-
-    PRODUCT_OFFERS = {
-        'A': [(3, 130), (5, 200)],
-        'B': [(2, 45)],
-        'E': [(2, 'get one B free')],
-        'F': [(2, 'get one F free')],
-        'H': [(5, 45), (10, 80)],
-        # 'K': [(2, 150)],
-        # 'N': [(3, 'get one M free')],
-        # 'P': [(5, 200)],
-        # 'Q': [(3, 80)],
-        # 'R': [(3, 'get one Q free')],
-        # 'U': [(3, 'get one U free')],
-        # 'V': [(2, 90), (3, 130)],
-    }
+PRODUCT_OFFERS = {
+    'A': [(3, 130), (5, 200)],
+    'B': [(2, 45)],
+    'E': calculate_e_total_and_b_free_count,
+    'F': [(2, 'get one F free')],
+    'H': [(5, 45), (10, 80)],
+    # 'K': [(2, 150)],
+    # 'N': [(3, 'get one M free')],
+    # 'P': [(5, 200)],
+    # 'Q': [(3, 80)],
+    # 'R': [(3, 'get one Q free')],
+    # 'U': [(3, 'get one U free')],
+    # 'V': [(2, 90), (3, 130)],
+}
 
     # if these come up we have to adjust counts of other products
     # FREE_OTHER_PROUDCTS = {
@@ -88,68 +85,70 @@ class CheckoutSolution:
     #     'N': ('M', 3),  # for every 3 N get one M free
     #     'R': ('Q', 3),  # for every 3 R get one Q free
     # }
-    FREE_OTHER_PROUDCTS = {
-        'E': 'B',
-        'N': 'M',
-        'R': 'Q',
-    }
+FREE_OTHER_PROUDCTS = {
+    'E': 'B',
+    'N': 'M',
+    'R': 'Q',
+}
+
+# TODO update all these to skip evaluation if count is 0
+def calculate_a_total(acount):
+    """3A for 130, 5A for 200"""
+    five_pack_count = acount // 5
+    remainder_after_five_packs = acount % 5
+
+    return (five_pack_count) * 200 + (remainder_after_five_packs // 3) * 130 + (remainder_after_five_packs % 3) * BASE_PRICES['A']
+
+def calculate_b_total(bcount, bfree_count):
+    """
+    - has to be calculated after getting free B count from E's
+    - without free B count its 2B for 45
+    """
+    if bcount > 0:
+        bcount -= bfree_count
+    b_total = (bcount // 2) * 45 + (bcount % 2) * BASE_PRICES['B']
+    return b_total
+
+def calculate_e_total_and_b_free_count(ecount):
+    """2E get one B free"""
+    free_b_counts = ecount // 2
+    return ecount * BASE_PRICES['E'], free_b_counts
+
+def calculate_f_total(fcount):
+    """2F get one F free"""
+    chargeable_f_count = fcount - (fcount // 3)
+    return chargeable_f_count * BASE_PRICES['F']
+
+def calculate_h_total(hcount):
+    """5H for 45, 10H for 80"""
+    ten_pack_count = hcount // 10
+    remainder_after_ten_packs = hcount % 10
+    return (ten_pack_count) * 80 + (remainder_after_ten_packs // 5) * 45 + (remainder_after_ten_packs % 5) * BASE_PRICES['H']
+
+def calculate_k_total(kcount):
+    """TODO"""
+    pass
+def calculate_n_total(ncount):
+    """TODO"""
+    pass
+def calculate_p_total(pcount):
+    """TODO"""
+    pass
+def calculate_q_total(qcount):
+    """TODO"""
+    pass
+def calculate_r_total(rcount):
+    """TODO"""
+    pass
+def calculate_u_total(ucount):
+    """TODO"""
+    pass
+def calculate_v_total(vcount):
+    """TODO"""
+    pass
 
 
-    # TODO update all these to skip evaluation if count is 0
-    def calculate_a_total(self, acount):
-        """3A for 130, 5A for 200"""
-        five_pack_count = acount // 5
-        remainder_after_five_packs = acount % 5
-
-        return (five_pack_count) * 200 + (remainder_after_five_packs // 3) * 130 + (remainder_after_five_packs % 3) * BASE_PRICES['A']
-    
-    def calculate_b_total(self, bcount, bfree_count):
-        """
-        - has to be calculated after getting free B count from E's
-        - without free B count its 2B for 45
-        """
-        if bcount > 0:
-            bcount -= bfree_count
-        b_total = (bcount // 2) * 45 + (bcount % 2) * BASE_PRICES['B']
-        return b_total
-
-    def calculate_e_total_and_b_free_count(self, ecount):
-        """2E get one B free"""
-        free_b_counts = ecount // 2
-        return ecount * BASE_PRICES['E'], free_b_counts
-    
-    def calculate_f_total(self, fcount):
-        """2F get one F free"""
-        chargeable_f_count = fcount - (fcount // 3)
-        return chargeable_f_count * BASE_PRICES['F']
-
-    def calculate_h_total(self, hcount):
-        """5H for 45, 10H for 80"""
-        ten_pack_count = hcount // 10
-        remainder_after_ten_packs = hcount % 10
-        return (ten_pack_count) * 80 + (remainder_after_ten_packs // 5) * 45 + (remainder_after_ten_packs % 5) * BASE_PRICES['H']
-
-    def calculate_k_total(self, kcount):
-        """TODO"""
-        pass
-    def calculate_n_total(self, ncount):
-        """TODO"""
-        pass
-    def calculate_p_total(self, pcount):
-        """TODO"""
-        pass
-    def calculate_q_total(self, qcount):
-        """TODO"""
-        pass
-    def calculate_r_total(self, rcount):
-        """TODO"""
-        pass
-    def calculate_u_total(self, ucount):
-        """TODO"""
-        pass
-    def calculate_v_total(self, vcount):
-        """TODO"""
-        pass
+class CheckoutSolution:
 
     def checkout(self, skus):
 
@@ -174,9 +173,9 @@ class CheckoutSolution:
 
         final_total = 0
 
-        for cross_product_ltr in self.FREE_OTHER_PROUDCTS.keys():
+        for cross_product_ltr in FREE_OTHER_PROUDCTS.keys():
             if cross_product_ltr in letter_counts:
-
+                cross_product_ltr_total, free_ltr_count = PRODUCT_OFFERS[cross_product_ltr][0]
 
         
 
@@ -227,6 +226,7 @@ class CheckoutSolution:
         # really dont want to also write all these out again, could just aggregate totals but still thinking of cleaner way
         # have to specifc funcs in meantime anyway
         return sum([a_total, b_total, c_total, d_total, e_total, f_total, g_total, h_total])
+
 
 
 

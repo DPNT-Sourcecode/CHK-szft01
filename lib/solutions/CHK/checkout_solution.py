@@ -76,8 +76,8 @@ class CheckoutSolution:
     
     def calculate_e_total_and_b_free_count(self, ecount):
         """2E get one B free"""
-        free_b_count = ecount // 2
-        return ecount * BASE_PRICES['E'], free_b_count
+        free_b_counts = ecount // 2
+        return ecount * BASE_PRICES['E'], free_b_counts
     
     def calculate_f_total(self, fcount):
         """2F get one F free"""
@@ -94,22 +94,30 @@ class CheckoutSolution:
             return -1
         # this means only capital letter will count toward total
         
-        a_count = skus.count('A')
-        b_count = skus.count('B')
-        c_count = skus.count('C')
-        d_count = skus.count('D')
-        e_count = skus.count('E')
-        f_count = skus.count('F')
+        # a_count = skus.count('A')
+        # letter_counts['B'] = skus.count('B')
+        # c_count = skus.count('C')
+        # d_count = skus.count('D')
+        # e_count = skus.count('E')
+        # f_count = skus.count('F')
 
-        a_total = self.calculate_a_total(a_count)
-        c_total = c_count * BASE_PRICES['C']
-        d_total = d_count * BASE_PRICES['D']
-        e_total, b_free_count = self.calculate_e_total_and_b_free_count(e_count)
-        f_count = self.calculate_f_total(f_count)
+        letter_counts = {}
+
+        for letter in BASE_PRICES.keys():
+            letter_counts[letter] = skus.count(letter)
+
+        # if youre watching im just thinking about diff implementations here to avoid lines upon lines
+
+        a_total = self.calculate_a_total(letter_counts['A'])
+        c_total = letter_counts['C'] * BASE_PRICES['C']
+        d_total = letter_counts['D'] * BASE_PRICES['D']
+        e_total, b_free_count = self.calculate_e_total_and_b_free_count(letter_counts['E'])
+        f_total = self.calculate_f_total(letter_counts['F'])
 
         # has to be calculated after getting free B count from E's
-        if b_count > 0:
-            b_count -= b_free_count
-        b_total = (b_count // 2) * 45 + (b_count % 2) * BASE_PRICES['B']
+        if letter_counts['B'] > 0:
+            letter_counts['B'] -= b_free_count
+        b_total = (letter_counts['B'] // 2) * 45 + (letter_counts['B'] % 2) * BASE_PRICES['B']
 
-        return sum([a_total, b_total, c_total, d_total, e_total, f_count])
+        return sum([a_total, b_total, c_total, d_total, e_total, f_total])
+

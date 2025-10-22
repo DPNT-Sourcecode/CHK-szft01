@@ -94,6 +94,31 @@ class CheckoutSolution:
         chargeable_f_count = fcount - (fcount // 3)
         return chargeable_f_count * BASE_PRICES['F']
 
+    def calculate_h_total(self, hcount):
+        """TODO"""
+        pass
+    def calculate_k_total(self, kcount):
+        """TODO"""
+        pass
+    def calculate_n_total(self, ncount):
+        """TODO"""
+        pass
+    def calculate_p_total(self, pcount):
+        """TODO"""
+        pass
+    def calculate_q_total(self, qcount):
+        """TODO"""
+        pass
+    def calculate_r_total(self, rcount):
+        """TODO"""
+        pass
+    def calculate_u_total(self, ucount):
+        """TODO"""
+        pass
+    def calculate_v_total(self, vcount):
+        """TODO"""
+        pass
+
     def checkout(self, skus):
 
         if skus is None or skus == '':
@@ -113,6 +138,8 @@ class CheckoutSolution:
         # could assign fucntions to each letter in BASE_PRICES and rename but there are dependencies like free Bs for E aso have to do E before B
         # just gonna get it working for now
         # just realsed the test coverage may expect different test files, really hope thats not the case
+
+        # goign to pause to see if our tests are actually evanluated because there is a LOT needed for CHK_4
 
         a_total = self.calculate_a_total(letter_counts['A'])
         c_total = letter_counts['C'] * BASE_PRICES['C']
@@ -148,6 +175,7 @@ class CheckoutSolution:
         
 
         return sum([a_total, b_total, c_total, d_total, e_total, f_total])
+
 
 
 

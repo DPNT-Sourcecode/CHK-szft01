@@ -228,9 +228,3 @@ class CheckoutSolution:
             final_total += temp
 
         return final_total
-
-
-
-
-
-

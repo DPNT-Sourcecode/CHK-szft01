@@ -105,3 +105,4 @@ class TestSum():
         assert CheckoutSolution().checkout('VVVV') == 180
         assert CheckoutSolution().checkout('VVVVV') == 220
         assert CheckoutSolution().checkout('VVVVVV') == 260
+        assert CheckoutSolution().checkout('PPPPQRUVPQRUVPQRUVSU') == 740

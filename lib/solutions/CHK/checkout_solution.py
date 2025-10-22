@@ -123,13 +123,16 @@ def calculate_p_total(pcount):
     """5P for 200"""
     return (pcount // 5) * 200 + (pcount % 5) * BASE_PRICES['P']
 
-def calculate_q_total(qcount):
+def calculate_q_total(qcount, qfree_count=0):
     """3Q for 80"""
+    if qcount > 0:
+        qcount -= qfree_count
     return (qcount // 3) * 80 + (qcount % 3) * BASE_PRICES['Q']
 
-def calculate_r_total(rcount):
+def calculate_r_total_and_q_free_count(rcount):
     """3R get one Q free"""
-    pass
+    free_q_counts = rcount // 3
+    return rcount * BASE_PRICES['R'], free_q_counts
 
 def calculate_u_total(ucount):
     """3U get one U free"""
@@ -159,7 +162,7 @@ PRODUCT_OFFERS = {
     'O': lambda val: val * BASE_PRICES['O'],
     'P': calculate_p_total,
     'Q': calculate_q_total,
-    'R': calculate_r_total,
+    'R': calculate_r_total_and_q_free_count,
     'S': lambda val: val * BASE_PRICES['S'],
     'T': lambda val: val * BASE_PRICES['T'],
     'U': calculate_u_total,

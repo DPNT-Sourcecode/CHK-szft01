@@ -85,3 +85,10 @@ class TestSum():
         assert CheckoutSolution().checkout('HHHHH') == 45
         assert CheckoutSolution().checkout('HHHHHHHHHH') == 80
         assert CheckoutSolution().checkout('HHHHHHHHHHH') == 90
+        assert CheckoutSolution().checkout('I') == 35
+        assert CheckoutSolution().checkout('J') == 60
+        assert CheckoutSolution().checkout('K') == 80
+        assert CheckoutSolution().checkout('KK') == 150
+        assert CheckoutSolution().checkout('NNN') == 80  # 3N get one M free
+        assert CheckoutSolution().checkout('NNNM') == 80  # 3N get one M free
+        assert CheckoutSolution().checkout('NNNMM') == 95  # 3N get one M free

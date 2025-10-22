@@ -69,7 +69,16 @@ FREE_OTHER_PROUDCTS = {
     'R': 'Q',
 }
 
+# actually order will matter as we..
+# 
 THREE_FOR_45_GROUP = set(['S', 'T', 'X', 'Y', 'Z'])
+
+
+'Y': 10,
+'T': 20,
+'S': 30,
+'Z': 50,
+'X': 90,
 
 def calculate_a_total(acount):
     """3A for 130, 5A for 200"""
@@ -243,4 +252,5 @@ and I desperately hope it doesnt look like I just copy pasted an entire solution
 onto CHK 5 in the meantime. if I should be put throug to the next round I can happily explain what I went rhough to pridcue CHK 4 solution
 whihc I am pretty happy with now (not as happy as I can be but still) considering where I was after chk3 (ie code not moudlarised)
 """
+
 

@@ -97,3 +97,11 @@ class TestSum():
         assert CheckoutSolution().checkout('RRR') == 150  # 3R get one Q free
         assert CheckoutSolution().checkout('RRRQ') == 150  # 3R get one Q free
         assert CheckoutSolution().checkout('RRRQQ') == 180  # 3R get one Q free
+        assert CheckoutSolution().checkout('U') == 40
+        assert CheckoutSolution().checkout('UUU') == 120  # 3U get one U free
+        assert CheckoutSolution().checkout('UUUU') == 120  # 3U get one U free
+        assert CheckoutSolution().checkout('VV') == 90
+        assert CheckoutSolution().checkout('VVV') == 130
+        assert CheckoutSolution().checkout('VVVV') == 180
+        assert CheckoutSolution().checkout('VVVVV') == 220
+        assert CheckoutSolution().checkout('VVVVVV') == 260

@@ -34,8 +34,6 @@ Our price table and offers:
 """
 import re
 
-# OK at the risk of taking loads of time I'm going for a big refactor - worked quite well!
-# still could do more but gonna plough on for now
 BASE_PRICES = {
     'A': 50,
     'B': 30,
@@ -131,7 +129,6 @@ def calculate_q_total(qcount, qfree_count=0):
 
 def calculate_r_total_and_q_free_count(rcount):
     """3R get one Q free"""
-    print("RCOUNT:", rcount)
     free_q_counts = rcount // 3
     return rcount * BASE_PRICES['R'], free_q_counts
 

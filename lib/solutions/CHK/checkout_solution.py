@@ -41,39 +41,57 @@ BASE_PRICES = {
     'D': 15,
     'E': 40,
     'F': 10,
+    'G': 20,
+    'H': 10,
+    'I': 35,
+    'J': 60,
+    'K': 80,
+    'L': 90,
+    'M': 15,
+    'N': 40,
+    'O': 10,
+    'P': 50,
+    'Q': 30,
+    'R': 50,
+    'S': 30,
+    'T': 20,
+    'U': 40,
+    'V': 50,
+    'W': 20,
+    'X': 90,
+    'Y': 10,
+    'Z': 50,
 }
 
 
 class CheckoutSolution:
 
     def calculate_a_total(self, acount):
-        # i need the remainder here instead of just count %3
-
+        """3A for 130, 5A for 200"""
         five_pack_count = acount // 5
         remainder_after_five_packs = acount % 5
 
         return (five_pack_count) * 200 + (remainder_after_five_packs // 3) * 130 + (remainder_after_five_packs % 3) * BASE_PRICES['A']
     
     def calculate_e_total_and_b_free_count(self, ecount):
-        # for every 2 E's, get one B free
+        """2E get one B free"""
         free_b_count = ecount // 2
         return ecount * BASE_PRICES['E'], free_b_count
     
     def calculate_f_total(self, fcount):
-        # for every 2 F's, get one F free
+        """2F get one F free"""
         chargeable_f_count = fcount - (fcount // 3)
         return chargeable_f_count * BASE_PRICES['F']
 
-    # skus = unicode string
     def checkout(self, skus):
 
         if skus is None or skus == '':
             return 0
         
-        pattern = re.compile(r'^[ABCDEF]+$')  # or r'^[ABCD]*$' to allow empty
+        pattern = re.compile(r'^[A-Z]+$') # any capital letter
         if not pattern.fullmatch(skus):
             return -1
-        # this means only ABCD will count toward total
+        # this means only capital letter will count toward total
         
         a_count = skus.count('A')
         b_count = skus.count('B')
@@ -94,5 +112,6 @@ class CheckoutSolution:
         b_total = (b_count // 2) * 45 + (b_count % 2) * BASE_PRICES['B']
 
         return sum([a_total, b_total, c_total, d_total, e_total, f_count])
+
 
 

@@ -125,5 +125,3 @@ class TestSum():
         # I am led to believe these tests are NOT evaluated in our applicaiton
         # I really hope I am right, I know I would have wasted time on them earleir 
         # but considering the size of the prodcut rnage now there are TONNES of potential tests
-
-

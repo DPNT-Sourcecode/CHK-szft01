@@ -89,6 +89,11 @@ class TestSum():
         assert CheckoutSolution().checkout('J') == 60
         assert CheckoutSolution().checkout('K') == 80
         assert CheckoutSolution().checkout('KK') == 150
-        assert CheckoutSolution().checkout('NNN') == 80  # 3N get one M free
-        assert CheckoutSolution().checkout('NNNM') == 80  # 3N get one M free
-        assert CheckoutSolution().checkout('NNNMM') == 95  # 3N get one M free
+        assert CheckoutSolution().checkout('NNN') == 120  # 3N get one M free
+        assert CheckoutSolution().checkout('NNNM') == 120  # 3N get one M free
+        assert CheckoutSolution().checkout('NNNMM') == 135  # 3N get one M free
+        assert CheckoutSolution().checkout('PPPPP') == 200
+        assert CheckoutSolution().checkout('QQQ') == 80
+        assert CheckoutSolution().checkout('RRR') == 150  # 3R get one Q free
+        assert CheckoutSolution().checkout('RRRQ') == 150  # 3R get one Q free
+        assert CheckoutSolution().checkout('RRRQQ') == 180  # 3R get one Q free

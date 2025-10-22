@@ -131,6 +131,7 @@ def calculate_q_total(qcount, qfree_count=0):
 
 def calculate_r_total_and_q_free_count(rcount):
     """3R get one Q free"""
+    print("RCOUNT:", rcount)
     free_q_counts = rcount // 3
     return rcount * BASE_PRICES['R'], free_q_counts
 

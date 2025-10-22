@@ -70,7 +70,13 @@ FREE_OTHER_PROUDCTS = {
 }
 
 # actually order will matter as we..
-# 
+# im confused by the final requirment. if skus = XXXS
+# in the 3 vals for 45, 2 will be 2 Xs for sure
+# but that leaves the customer either playing for 1 full X(90) or 1 full S(30)
+# ie do we make the customer pay for the more expensive item or the less expensive item
+# I would have assumed we make the customer pay for the more expensive item
+# BUT in the CHK specs:
+# "The policy of the supermarket is to always favor the customer when applying special offers"
 THREE_FOR_45_GROUP = set(['S', 'T', 'X', 'Y', 'Z'])
 
 
@@ -252,5 +258,6 @@ and I desperately hope it doesnt look like I just copy pasted an entire solution
 onto CHK 5 in the meantime. if I should be put throug to the next round I can happily explain what I went rhough to pridcue CHK 4 solution
 whihc I am pretty happy with now (not as happy as I can be but still) considering where I was after chk3 (ie code not moudlarised)
 """
+
 
 

@@ -238,6 +238,8 @@ def calculate_three_for_45_offer_total(letter_counts):
     # calculate how many items are left after the packs
     remainder_after_packs = total_group_count % 3
 
+    print("remainder_after_packs:", remainder_after_packs)
+
     # now we need to charge for the most expensive items left
     if remainder_after_packs > 0:
         # get a sorted list of the items in the group by price descending
@@ -264,6 +266,7 @@ def calculate_three_for_45_offer_total(letter_counts):
             if ltr in letter_counts:
                 letter_counts.pop(ltr)
 
+    print("three_for_45_total:", three_for_45_total)
     return three_for_45_total
 
 class CheckoutSolution:

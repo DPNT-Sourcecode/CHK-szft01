@@ -108,3 +108,11 @@ class TestSum():
         assert CheckoutSolution().checkout('PPPPQRUVPQRUVPQRUVSU') == 740
 
         # CHK_5
+        assert CheckoutSolution().checkout('SSS') == 45
+        assert CheckoutSolution().checkout('TTT') == 45
+        assert CheckoutSolution().checkout('XXX') == 45
+        assert CheckoutSolution().checkout('YYY') == 45
+        assert CheckoutSolution().checkout('ZZZ') == 45
+        assert CheckoutSolution().checkout('STX') == 45
+        assert CheckoutSolution().checkout('STY') == 45
+        assert CheckoutSolution().checkout('STYY') == 55

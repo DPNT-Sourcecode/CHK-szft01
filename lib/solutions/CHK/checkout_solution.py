@@ -83,11 +83,6 @@ FREE_OTHER_PROUDCTS = {
 # ..
 # anyway, I'll go with what the spec says
 THREE_FOR_45_GROUP = set(['S', 'T', 'X', 'Y', 'Z'])
-# 'Y', 10,
-# 'T', 20,
-# 'S', 30,
-# 'Z', 50,
-# 'X', 90,
 
 def calculate_a_total(acount):
     """3A for 130, 5A for 200"""
@@ -244,10 +239,6 @@ def calculate_three_for_45_offer_total(letter_counts):
     # calculate how many items are left after the packs
     remainder_after_packs = total_group_count % 3
 
-    # print("total_group_count:", total_group_count)
-    # print("three_for_45_pack_count:", three_for_45_pack_count)
-    # print("remainder_after_packs:", remainder_after_packs)
-
     # now we need to charge for the LEAST expensive items left
     if remainder_after_packs > 0:
         # get a sorted list of the items in the group by price descending
@@ -255,8 +246,6 @@ def calculate_three_for_45_offer_total(letter_counts):
             [(ltr, BASE_PRICES[ltr]) for ltr in THREE_FOR_45_GROUP if ltr in letter_counts],
             key=lambda x: x[1],
         )
-
-        # print("sorted_group_items_by_price:", sorted_group_items_by_price)
 
         # go through the sorted list and charge for the most expensive items left
         for ltr, price in sorted_group_items_by_price:
@@ -278,7 +267,6 @@ def calculate_three_for_45_offer_total(letter_counts):
             if letter_counts[ltr] == 0:
                 letter_counts.pop(ltr)
 
-    # print("three_for_45_total:", three_for_45_total)
     return three_for_45_total
 
 class CheckoutSolution:

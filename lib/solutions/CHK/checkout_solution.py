@@ -9,6 +9,7 @@ Our price table and offers:
 | C    | 20    |                        |
 | D    | 15    |                        |
 | E    | 40    | 2E get one B free      |
+| F    | 10    | 2F get one F free      |
 +------+-------+------------------------+
 """
 import re
@@ -19,23 +20,26 @@ BASE_PRICES = {
     'C': 20,
     'D': 15,
     'E': 40,
+    'F': 10,
 }
 
 
 class CheckoutSolution:
 
-    def calculate_a_total(self, count):
+    def calculate_a_total(self, acount):
         # i need the remainder here instead of just count %3
 
-        five_pack_count = count // 5
-        remainder_after_five_packs = count % 5
+        five_pack_count = acount // 5
+        remainder_after_five_packs = acount % 5
 
         return (five_pack_count) * 200 + (remainder_after_five_packs // 3) * 130 + (remainder_after_five_packs % 3) * BASE_PRICES['A']
     
-    def calculate_e_total_and_b_free_count(self, count):
+    def calculate_e_total_and_b_free_count(self, ecount):
         # for every 2 E's, get one B free
-        free_b_count = count // 2
-        return count * BASE_PRICES['E'], free_b_count
+        free_b_count = ecount // 2
+        return ecount * BASE_PRICES['E'], free_b_count
+    
+    def calculate_f_total(self, fcount):
 
     # skus = unicode string
     def checkout(self, skus):
@@ -43,7 +47,7 @@ class CheckoutSolution:
         if skus is None or skus == '':
             return 0
         
-        pattern = re.compile(r'^[ABCDE]+$')  # or r'^[ABCD]*$' to allow empty
+        pattern = re.compile(r'^[ABCDEF]+$')  # or r'^[ABCD]*$' to allow empty
         if not pattern.fullmatch(skus):
             return -1
         # this means only ABCD will count toward total
@@ -65,3 +69,4 @@ class CheckoutSolution:
         b_total = (b_count // 2) * 45 + (b_count % 2) * BASE_PRICES['B']
 
         return sum([a_total, b_total, c_total, d_total, e_total])
+

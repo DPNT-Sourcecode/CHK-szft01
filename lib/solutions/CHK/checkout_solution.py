@@ -108,9 +108,16 @@ def calculate_k_total(kcount):
     """2K for 150"""
     return (kcount // 2) * 150 + (kcount % 2) * BASE_PRICES['K']
 
-def calculate_n_total(ncount):
+def calculate_m_total(mcount, mfree_count=0):
+    """M has no offers but has to be calculated after getting free M count from N's"""
+    if mcount > 0:
+        mcount -= mfree_count
+    return mcount * BASE_PRICES['M']
+
+def calculate_n_total_and_m_free_count(ncount):
     """3N get one M free"""
-    pass
+    free_m_counts = ncount // 3
+    return ncount * BASE_PRICES['N'], free_m_counts
 
 def calculate_p_total(pcount):
     """5P for 200"""
@@ -137,30 +144,30 @@ def calculate_v_total(vcount):
 PRODUCT_OFFERS = {
     'A': calculate_a_total,
     'B': calculate_b_total,
-    'C': lambda c: c * BASE_PRICES['C'],
-    'D': lambda c: c * BASE_PRICES['D'],
+    'C': lambda val: val * BASE_PRICES['C'],
+    'D': lambda val: val * BASE_PRICES['D'],
     'E': calculate_e_total_and_b_free_count,
     'F': calculate_f_total,
-    'G': lambda c: c * BASE_PRICES['G'],
+    'G': lambda val: val * BASE_PRICES['G'],
     'H': calculate_h_total,
-    'I': lambda c: c * BASE_PRICES['I'],
-    'J': lambda c: c * BASE_PRICES['J'],
+    'I': lambda val: val * BASE_PRICES['I'],
+    'J': lambda val: val * BASE_PRICES['J'],
     'K': calculate_k_total,
-    'L': lambda c: c * BASE_PRICES['L'],
-    'M': lambda c: c * BASE_PRICES['M'],
-    'N': calculate_n_total,
-    'O': lambda c: c * BASE_PRICES['O'],
+    'L': lambda val: val * BASE_PRICES['L'],
+    'M': calculate_m_total,
+    'N': calculate_n_total_and_m_free_count,
+    'O': lambda val: val * BASE_PRICES['O'],
     'P': calculate_p_total,
     'Q': calculate_q_total,
     'R': calculate_r_total,
-    'S': lambda c: c * BASE_PRICES['S'],
-    'T': lambda c: c * BASE_PRICES['T'],
+    'S': lambda val: val * BASE_PRICES['S'],
+    'T': lambda val: val * BASE_PRICES['T'],
     'U': calculate_u_total,
     'V': calculate_v_total,
-    'W': lambda c: c * BASE_PRICES['W'],
-    'X': lambda c: c * BASE_PRICES['X'],
-    'Y': lambda c: c * BASE_PRICES['Y'],
-    'Z': lambda c: c * BASE_PRICES['Z'],
+    'W': lambda val: val * BASE_PRICES['W'],
+    'X': lambda val: val * BASE_PRICES['X'],
+    'Y': lambda val: val * BASE_PRICES['Y'],
+    'Z': lambda val: val * BASE_PRICES['Z'],
 }
 
 def calculate_cross_product_item_totals(letter_counts):
@@ -177,14 +184,19 @@ def calculate_cross_product_item_totals(letter_counts):
             # calculate total for this product (E in example) and amounft of free other product (B in example)
             cross_product_ltr_total, free_ltr_count = PRODUCT_OFFERS[cross_product_ltr](letter_counts[cross_product_ltr])
 
+            # calculate total for free other product (B in example) given amount of free items
             free_ltr_total = PRODUCT_OFFERS[free_ltr](letter_counts.get(free_ltr, 0), free_ltr_count)
+
+            # add bothto total
             cross_product_offer_total += cross_product_ltr_total + free_ltr_total
             
             # remove these from letter_counts so they arent double counted later
             letter_counts.pop(cross_product_ltr)
             if free_ltr in letter_counts:
                 letter_counts.pop(free_ltr)
+
     return cross_product_offer_total
+
 
 class CheckoutSolution:
 
@@ -208,26 +220,14 @@ class CheckoutSolution:
 
         final_total = 0
 
-        # TODO explain
-        # TODO extract?
-        # if there are any cross product free items we have to do those first
-        # eg if there are Es we have to calculate those first to get free Bs
-        for cross_product_ltr in FREE_OTHER_PROUDCTS.keys():
-            if cross_product_ltr in letter_counts:
-                free_ltr = FREE_OTHER_PROUDCTS[cross_product_ltr]
-                cross_product_ltr_total, free_ltr_count = PRODUCT_OFFERS[cross_product_ltr](letter_counts[cross_product_ltr])
-                free_ltr_total = PRODUCT_OFFERS[free_ltr](letter_counts.get(free_ltr, 0), free_ltr_count)
-                final_total += cross_product_ltr_total + free_ltr_total
-                # remove these from letter_counts so they arent double counted later
-                letter_counts.pop(cross_product_ltr)
-                if free_ltr in letter_counts:
-                    letter_counts.pop(free_ltr)
+        final_total += calculate_cross_product_item_totals(letter_counts)
 
         for letter in letter_counts:
             temp = PRODUCT_OFFERS[letter](letter_counts[letter])
             final_total += temp
 
         return final_total
+
 
 
 

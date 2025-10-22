@@ -218,6 +218,53 @@ def calculate_cross_product_item_totals(letter_counts):
 
     return cross_product_offer_total
 
+def calculate_three_for_45_offer_total(letter_counts):
+    """
+    - if there are any of the 3 for 45 group we have to do those first
+    - as they cross product ie S,T,X,Y,Z
+    """
+    three_for_45_total = 0
+
+    # get total count of all items in the group
+    total_group_count = 0
+    for ltr in THREE_FOR_45_GROUP:
+        if ltr in letter_counts:
+            total_group_count += letter_counts[ltr]
+
+    # calculate how many 3 for 45 packs we can have
+    three_for_45_pack_count = total_group_count // 3
+    three_for_45_total += three_for_45_pack_count * 45
+
+    # calculate how many items are left after the packs
+    remainder_after_packs = total_group_count % 3
+
+    # now we need to charge for the most expensive items left
+    if remainder_after_packs > 0:
+        # get a sorted list of the items in the group by price descending
+        sorted_group_items_by_price = sorted(
+            [(ltr, BASE_PRICES[ltr]) for ltr in THREE_FOR_45_GROUP if ltr in letter_counts],
+            key=lambda x: x[1],
+            reverse=True
+        )
+
+        print("sorted_group_items_by_price:", sorted_group_items_by_price)
+
+        # go through the sorted list and charge for the most expensive items left
+        for ltr, price in sorted_group_items_by_price:
+            ltr_count = letter_counts[ltr]
+            while ltr_count > 0 and remainder_after_packs > 0:
+                three_for_45_total += price
+                ltr_count -= 1
+                remainder_after_packs -= 1
+            if remainder_after_packs == 0:
+                break
+
+        # remove these from letter_counts so they arent double counted later
+        for ltr in THREE_FOR_45_GROUP:
+            if ltr in letter_counts:
+                letter_counts.pop(ltr)
+
+    return three_for_45_total
 
 class CheckoutSolution:
 
@@ -263,7 +310,3 @@ and I desperately hope it doesnt look like I just copy pasted an entire solution
 onto CHK 5 in the meantime. if I should be put throug to the next round I can happily explain what I went rhough to pridcue CHK 4 solution
 whihc I am pretty happy with now (not as happy as I can be but still) considering where I was after chk3 (ie code not moudlarised)
 """
-
-
-
-

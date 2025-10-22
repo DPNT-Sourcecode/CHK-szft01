@@ -80,3 +80,8 @@ class TestSum():
         assert CheckoutSolution().checkout('FFFFFF') == 40
 
         # CHK_4
+        assert CheckoutSolution().checkout('GGG') == 60
+        assert CheckoutSolution().checkout('HH') == 20
+        assert CheckoutSolution().checkout('HHHHH') == 45
+        assert CheckoutSolution().checkout('HHHHHHHHHH') == 80
+        assert CheckoutSolution().checkout('HHHHHHHHHHH') == 90

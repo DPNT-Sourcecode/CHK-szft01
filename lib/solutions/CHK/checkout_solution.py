@@ -17,8 +17,7 @@ class CheckoutSolution:
     # skus = unicode string
     def checkout(self, skus):
 
-        if skus is None:
-            return 0
+        total = 0
         
         a_count = skus.count('A')
         b_count = skus.count('B')
@@ -30,7 +29,9 @@ class CheckoutSolution:
         c_total = c_count * 20
         d_total = d_count * 15
 
-        return sum([a_total, b_total, c_total, d_total])
+        total = sum([a_total, b_total, c_total, d_total])
+        return total
+
 
 
 

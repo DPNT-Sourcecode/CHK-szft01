@@ -87,8 +87,10 @@ class TestSum():
         assert CheckoutSolution().checkout('HHHHHHHHHHH') == 90
         assert CheckoutSolution().checkout('I') == 35
         assert CheckoutSolution().checkout('J') == 60
-        assert CheckoutSolution().checkout('K') == 80
-        assert CheckoutSolution().checkout('KK') == 150
+        assert CheckoutSolution().checkout('K') == 70
+        # chk 5 change K to 70
+        assert CheckoutSolution().checkout('KK') == 120
+        # and also its offer
         assert CheckoutSolution().checkout('NNN') == 120  # 3N get one M free
         assert CheckoutSolution().checkout('NNNM') == 120  # 3N get one M free
         assert CheckoutSolution().checkout('NNNMM') == 135  # 3N get one M free
@@ -105,7 +107,7 @@ class TestSum():
         assert CheckoutSolution().checkout('VVVV') == 180
         assert CheckoutSolution().checkout('VVVVV') == 220
         assert CheckoutSolution().checkout('VVVVVV') == 260
-        assert CheckoutSolution().checkout('PPPPQRUVPQRUVPQRUVSU') == 740
+        assert CheckoutSolution().checkout('PPPPQRUVPQRUVPQRUVSU') == 730
 
         # CHK_5
         assert CheckoutSolution().checkout('SSS') == 45
@@ -117,7 +119,10 @@ class TestSum():
         assert CheckoutSolution().checkout('STY') == 45
         assert CheckoutSolution().checkout('STYY') == 55
         assert CheckoutSolution().checkout('VVSTVVVY') == 265
+        assert CheckoutSolution().checkout('KKK') == 190
+        assert CheckoutSolution().checkout('KKKK') == 240
 
         # I am led to believe these tests are NOT evaluated in our applicaiton
         # I really hope I am right, I know I would have wasted time on them earleir 
         # but considering the size of the prodcut rnage now there are TONNES of potential tests
+

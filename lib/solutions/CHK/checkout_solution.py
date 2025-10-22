@@ -83,6 +83,7 @@ FREE_OTHER_PROUDCTS = {
 # ..
 # anyway, I'll go with what the spec says
 # NOTE i realise some of these rices actually change between chk4 and ch5, hardly fair to do that and get a 10 min penalty
+# NOTE: and an offer... really?? thats 20 mins of penalties for those 2
 THREE_FOR_45_GROUP = set(['S', 'T', 'X', 'Y', 'Z'])
 
 def calculate_a_total(acount):
@@ -119,8 +120,8 @@ def calculate_h_total(hcount):
     return (ten_pack_count) * 80 + (remainder_after_ten_packs // 5) * 45 + (remainder_after_ten_packs % 5) * BASE_PRICES['H']
 
 def calculate_k_total(kcount):
-    """2K for 150"""
-    return (kcount // 2) * 150 + (kcount % 2) * BASE_PRICES['K']
+    """2K for 120"""
+    return (kcount // 2) * 120 + (kcount % 2) * BASE_PRICES['K']
 
 def calculate_m_total(mcount, mfree_count=0):
     """M has no offers but has to be calculated after getting free M count from N's"""
@@ -314,6 +315,7 @@ and I desperately hope it doesnt look like I just copy pasted an entire solution
 onto CHK 5 in the meantime. if I should be put throug to the next round I can happily explain what I went rhough to pridcue CHK 4 solution
 whihc I am pretty happy with now (not as happy as I can be but still) considering where I was after chk3 (ie code not moudlarised)
 """
+
 
 
 

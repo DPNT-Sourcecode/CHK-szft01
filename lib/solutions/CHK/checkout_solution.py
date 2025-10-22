@@ -45,7 +45,7 @@ BASE_PRICES = {
     'H': 10,
     'I': 35,
     'J': 60,
-    'K': 80,
+    'K': 70,
     'L': 90,
     'M': 15,
     'N': 40,
@@ -53,14 +53,14 @@ BASE_PRICES = {
     'P': 50,
     'Q': 30,
     'R': 50,
-    'S': 30,
+    'S': 20,
     'T': 20,
     'U': 40,
     'V': 50,
     'W': 20,
-    'X': 90,
-    'Y': 10,
-    'Z': 50,
+    'X': 17,
+    'Y': 20,
+    'Z': 21,
 }
 
 FREE_OTHER_PROUDCTS = {
@@ -82,6 +82,7 @@ FREE_OTHER_PROUDCTS = {
 # not specified properly or else counterintuitive
 # ..
 # anyway, I'll go with what the spec says
+# NOTE i realise some of these rices actually change between chk4 and ch5, hardly fair to do that and get a 10 min penalty
 THREE_FOR_45_GROUP = set(['S', 'T', 'X', 'Y', 'Z'])
 
 def calculate_a_total(acount):
@@ -313,5 +314,6 @@ and I desperately hope it doesnt look like I just copy pasted an entire solution
 onto CHK 5 in the meantime. if I should be put throug to the next round I can happily explain what I went rhough to pridcue CHK 4 solution
 whihc I am pretty happy with now (not as happy as I can be but still) considering where I was after chk3 (ie code not moudlarised)
 """
+
 
 

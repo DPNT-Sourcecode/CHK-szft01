@@ -25,7 +25,12 @@ BASE_PRICES = {
 class CheckoutSolution:
 
     def calculate_a_total(self, count):
-        return (count // 5) * 200 + ((count % 5) // 3) * 130 + (count % 3) * BASE_PRICES['A']
+        # i need the remainder here instead of just count %3
+
+        five_pack_count = count // 5
+        remainder_after_five_packs = count % 5
+
+        return (five_pack_count) * 200 + (remainder_after_five_packs // 3) * 130 + (remainder_after_five_packs % 3) * BASE_PRICES['A']
     
     def calculate_e_total_and_b_free_count(self, count):
         # for every 2 E's, get one B free

@@ -57,3 +57,4 @@ class TestSum():
         assert CheckoutSolution().checkout('AAAAA') == 200
         assert CheckoutSolution().checkout('AAAAAA') == 250
         assert CheckoutSolution().checkout('AAAAAAAAA') == 380
+        assert CheckoutSolution().checkout('EEEEBB') == 120  # 2 B's but 2 E's give 2 B's free

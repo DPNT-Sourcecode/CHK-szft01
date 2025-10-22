@@ -73,14 +73,19 @@ class CheckoutSolution:
         'E': [(2, 'get one B free')],
         'F': [(2, 'get one F free')],
         'H': [(5, 45), (10, 80)],
-        'K': [(2, 150)],
-        'N': [(3, 'get one M free')],
-        'P': [(5, 200)],
-        'Q': [(3, 80)],
-        'R': [(3, 'get one Q free')],
-        'U': [(3, 'get one U free')],
-        'V': [(2, 90), (3, 130)],
+        # 'K': [(2, 150)],
+        # 'N': [(3, 'get one M free')],
+        # 'P': [(5, 200)],
+        # 'Q': [(3, 80)],
+        # 'R': [(3, 'get one Q free')],
+        # 'U': [(3, 'get one U free')],
+        # 'V': [(2, 90), (3, 130)],
     }
+
+    # if these come up we have to adjust counts of other products
+    FREE_OTHER_PROUDCTS = set(['E', 'N', 'R'])
+
+
 
     # TODO update all these to skip evaluation if count is 0
     def calculate_a_total(self, acount):
@@ -150,8 +155,16 @@ class CheckoutSolution:
 
         letter_counts = {}
 
-        for letter in BASE_PRICES.keys():
-            letter_counts[letter] = skus.count(letter)
+        for ltr in skus:
+            if ltr in letter_counts:
+                letter_counts[ltr] += 1
+            else:
+                letter_counts[ltr] = 1
+
+        # for letter in BASE_PRICES.keys():
+        #     letter_counts[letter] = skus.count(letter)
+
+        
 
         # cant think of a clean way to avoid these next 26 calculations
         # could assign fucntions to each letter in BASE_PRICES and rename but there are dependencies like free Bs for E aso have to do E before B
@@ -200,4 +213,5 @@ class CheckoutSolution:
         # really dont want to also write all these out again, could just aggregate totals but still thinking of cleaner way
         # have to specifc funcs in meantime anyway
         return sum([a_total, b_total, c_total, d_total, e_total, f_total, g_total, h_total])
+
 

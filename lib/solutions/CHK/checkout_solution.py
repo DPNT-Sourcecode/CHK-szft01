@@ -67,6 +67,7 @@ BASE_PRICES = {
 
 class CheckoutSolution:
 
+    # TODO update all these to skip evaluation if count is 0
     def calculate_a_total(self, acount):
         """3A for 130, 5A for 200"""
         five_pack_count = acount // 5
@@ -140,32 +141,40 @@ class CheckoutSolution:
         # just realsed the test coverage may expect different test files, really hope thats not the case
 
         # goign to pause to see if our tests are actually evanluated because there is a LOT needed for CHK_4
+        # in a min
 
         a_total = self.calculate_a_total(letter_counts['A'])
         c_total = letter_counts['C'] * BASE_PRICES['C']
         d_total = letter_counts['D'] * BASE_PRICES['D']
 
+        # order swap, free B with E
         e_total, b_free_count = self.calculate_e_total_and_b_free_count(letter_counts['E'])
         b_total = self.calculate_b_total(letter_counts['B'], b_free_count)
 
         f_total = self.calculate_f_total(letter_counts['F'])
 
         g_total = letter_counts['G'] * BASE_PRICES['G']
-        h_total = pass
-        i_total = pass
+        h_total = self.calculate_h_total(letter_counts['H'])
+        i_total = 
         j_total = pass
-        k_total = pass
+        k_total = self.calculate_k_total(letter_counts['K'])
         l_total = pass
+    
+        # TODO order swap, free Ms for N
+        n_total = self.calculate_n_total(letter_counts['N'])
         m_total = pass
-        n_total = pass
+        
         o_total = pass
-        p_total = pass
-        q_total = pass
-        r_total = pass
+        p_total = self.calculate_p_total(letter_counts['P'])
+
+        # TODO order swap, free Qs for R
+        q_total = self.calculate_q_total(letter_counts['Q'])
+        r_total = self.calculate_r_total(letter_counts['R'])
+
         s_total = pass
         t_total = pass
-        u_total = pass
-        v_total = pass
+        u_total = self.calculate_u_total(letter_counts['U'])
+        v_total = self.calculate_v_total(letter_counts['V'])
         w_total = pass
         x_total = pass
         y_total = pass
@@ -175,6 +184,7 @@ class CheckoutSolution:
         
 
         return sum([a_total, b_total, c_total, d_total, e_total, f_total])
+
 
 
 

@@ -112,6 +112,7 @@ class CheckoutSolution:
         # cant think of a clean way to avoid these next 26 calculations
         # could assign fucntions to each letter in BASE_PRICES and rename but there are dependencies like free Bs for E aso have to do E before B
         # just gonna get it working for now
+        # just realsed the test coverage may expect different test files, really hope thats not the case
 
         a_total = self.calculate_a_total(letter_counts['A'])
         c_total = letter_counts['C'] * BASE_PRICES['C']
@@ -122,9 +123,31 @@ class CheckoutSolution:
 
         f_total = self.calculate_f_total(letter_counts['F'])
 
+        g_total = letter_counts['G'] * BASE_PRICES['G']
+        h_total = pass
+        i_total = pass
+        j_total = pass
+        k_total = pass
+        l_total = pass
+        m_total = pass
+        n_total = pass
+        o_total = pass
+        p_total = pass
+        q_total = pass
+        r_total = pass
+        s_total = pass
+        t_total = pass
+        u_total = pass
+        v_total = pass
+        w_total = pass
+        x_total = pass
+        y_total = pass
+        z_total = pass
+
         
         
 
         return sum([a_total, b_total, c_total, d_total, e_total, f_total])
+
 
 

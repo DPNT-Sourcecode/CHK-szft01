@@ -172,6 +172,12 @@ class CheckoutSolution:
         # for letter in BASE_PRICES.keys():
         #     letter_counts[letter] = skus.count(letter)
 
+        final_total = 0
+
+        for cross_product_ltr in self.FREE_OTHER_PROUDCTS.keys():
+            if cross_product_ltr in letter_counts:
+
+
         
 
         # cant think of a clean way to avoid these next 26 calculations
@@ -221,6 +227,7 @@ class CheckoutSolution:
         # really dont want to also write all these out again, could just aggregate totals but still thinking of cleaner way
         # have to specifc funcs in meantime anyway
         return sum([a_total, b_total, c_total, d_total, e_total, f_total, g_total, h_total])
+
 
 
 

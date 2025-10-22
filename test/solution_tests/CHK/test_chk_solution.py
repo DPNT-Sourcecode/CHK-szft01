@@ -30,7 +30,9 @@ class TestSum():
         assert CheckoutSolution().checkout('CC') == 40
         assert CheckoutSolution().checkout('DD') == 30
         assert CheckoutSolution().checkout('ABCD') == 115
-        assert CheckoutSolution().checkout('ABCDABAA') == 295
+        assert CheckoutSolution().checkout('ABCDABAA') == 260
+        assert CheckoutSolution().checkout('XYZ') == 0
+
 
 
 

@@ -67,21 +67,6 @@ BASE_PRICES = {
 
 class CheckoutSolution:
 
-    PRODUCT_OFFERS = {
-        'A': [(3, 130), (5, 200)],
-        'B': [(2, 45)],
-        'E': [(2, 'get one B free')],
-        'F': [(2, 'get one F free')],
-        'H': [(5, 45), (10, 80)],
-        'K': [(2, 150)],
-        'N': [(3, 'get one M free')],
-        'P': [(5, 200)],
-        'Q': [(3, 80)],
-        'R': [(3, 'get one Q free')],
-        'U': [(3, 'get one U free')],
-        'V': [(2, 90), (3, 130)],
-    }
-
     # TODO update all these to skip evaluation if count is 0
     def calculate_a_total(self, acount):
         """3A for 130, 5A for 200"""
@@ -200,4 +185,3 @@ class CheckoutSolution:
         # really dont want to also write all these out again, could just aggregate totals but still thinking of cleaner way
         # have to specifc funcs in meantime anyway
         return sum([a_total, b_total, c_total, d_total, e_total, f_total, g_total, h_total])
-

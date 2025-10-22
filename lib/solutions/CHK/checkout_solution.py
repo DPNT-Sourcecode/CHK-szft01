@@ -64,28 +64,21 @@ BASE_PRICES = {
     'Z': 50,
 }
 
-
-# if these come up we have to adjust counts of other products
-# FREE_OTHER_PROUDCTS = {
-#     'E': ('B', 2),  # for every 2 E get one B free
-#     'N': ('M', 3),  # for every 3 N get one M free
-#     'R': ('Q', 3),  # for every 3 R get one Q free
-# }
 FREE_OTHER_PROUDCTS = {
     'E': 'B',
     'N': 'M',
     'R': 'Q',
 }
 
-# TODO update all these to skip evaluation if count is 0
 def calculate_a_total(acount):
     """3A for 130, 5A for 200"""
+    print(f"DAVE CALC A {acount}")
     five_pack_count = acount // 5
     remainder_after_five_packs = acount % 5
 
     return (five_pack_count) * 200 + (remainder_after_five_packs // 3) * 130 + (remainder_after_five_packs % 3) * BASE_PRICES['A']
 
-def calculate_b_total(bcount, bfree_count):
+def calculate_b_total(bcount, bfree_count=0):
     """
     - has to be calculated after getting free B count from E's
     - without free B count its 2B for 45
@@ -190,7 +183,11 @@ class CheckoutSolution:
 
         for letter in letter_counts:
             print(f"DAVE {letter} {letter_counts[letter]}")
-            final_total += PRODUCT_OFFERS[letter](letter_counts[letter])
+            temp = PRODUCT_OFFERS[letter](letter_counts[letter])
+            print(f"DAVE TEMP {temp}")
+            final_total += temp
+
+        return final_total
         
 
         # cant think of a clean way to avoid these next 26 calculations
@@ -240,4 +237,5 @@ class CheckoutSolution:
         # # really dont want to also write all these out again, could just aggregate totals but still thinking of cleaner way
         # # have to specifc funcs in meantime anyway
         # return sum([a_total, b_total, c_total, d_total, e_total, f_total, g_total, h_total])
+
 
